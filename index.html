@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh Kumar Saravanan - Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3A5F'/%3E%3Ctext x='32' y='45' font-family='Georgia, Times New Roman, serif' font-size='38' font-weight='700' fill='%23FAFAF8' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Portfolio of Mahesh Kumar Saravanan — Aerospace Engineer specializing in Astrodynamics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --panel: #FFFFFF;
+    --ink: #12161C;
+    --muted: #5B6472;
+    --line: #E2E4E2;
+    --blue: #1F3A5F;
+    --orange: #C1521B;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250,250,248,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+  }
+  .nav-links{
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .nav-links a{ text-decoration: none; }
+  .nav-links a:hover{ color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 96px 0 72px;
+    position: relative;
+  }
+  .hero-inner{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  h1.name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  .tagline{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    color: var(--blue);
+    margin-top: 14px;
+  }
+  .hero-copy{
+    margin-top: 22px;
+    color: var(--muted);
+    max-width: 46ch;
+    font-size: 16px;
+  }
+
+  .solar-system{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 280px;
+    justify-self: end;
+  }
+  .sun{
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 16px 3px rgba(193,82,27,0.35);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  .orbit-ring{
+    position: absolute;
+    top: 50%; left: 50%;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .orbit-ring .spin{
+    position: absolute;
+    inset: 0;
+    animation: spin linear infinite;
+  }
+  .orbit-ring .planet{
+    position: absolute;
+    top: 50%; left: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .orbit-1{ width: 64px; height: 64px; }
+  .orbit-1 .spin{ animation-duration: 6s; }
+  .orbit-1 .planet{ width: 7px; height: 7px; background: var(--blue); }
+
+  .orbit-2{ width: 112px; height: 112px; }
+  .orbit-2 .spin{ animation-duration: 11s; }
+  .orbit-2 .planet{ width: 9px; height: 9px; background: #4F8FC4; }
+
+  .orbit-3{ width: 168px; height: 168px; }
+  .orbit-3 .spin{ animation-duration: 18s; }
+  .orbit-3 .planet{ width: 6px; height: 6px; background: var(--orange); }
+
+  .orbit-4{ width: 232px; height: 232px; }
+  .orbit-4 .spin{ animation-duration: 27s; }
+  .orbit-4 .planet{ width: 8px; height: 8px; background: var(--muted); }
+
+  @keyframes spin{
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .orbit-ring .spin{ animation: none; }
+  }
+
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 56px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  h2.section-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .section-note{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- About ---------- */
+  .about p{
+    max-width: 62ch;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .about p + p{ margin-top: 14px; }
+
+  /* ---------- Projects ---------- */
+  .project{
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 26px 28px;
+  }
+  .project + .project{ margin-top: 16px; }
+  .project-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .project-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .project-links{
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+  .project-links a{ text-decoration: none; color: var(--blue); border-bottom: 1px solid transparent; }
+  .project-links a:hover{ border-bottom-color: var(--blue); }
+  .project-desc{
+    margin-top: 10px;
+    color: var(--ink);
+    font-size: 15px;
+    max-width: 68ch;
+  }
+  .project-result{
+    margin-top: 12px;
+    padding-left: 14px;
+    border-left: 2px solid var(--orange);
+    font-size: 14.5px;
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .project-result strong{ color: var(--ink); font-weight: 500; }
+  .project-tags{
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+  }
+  .project-sublinks{
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .project-sublinks a{
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .project-sublinks a:hover{ border-bottom-color: var(--blue); }
+  .project-sublinks .sep{ color: var(--line); margin: 0 8px; }
+
+
+  /* ---------- Now ---------- */
+  .now-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .now-item{ font-size: 15px; }
+  .now-item .k{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .now-item p{ color: var(--muted); }
+
+  /* ---------- Leadership ---------- */
+  .lead-strip{
+    display: flex;
+    flex-direction: column;
+  }
+  .lead-row{
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .lead-strip .lead-row:last-child{ border-bottom: 1px solid var(--line); }
+  .lead-role{
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .lead-detail{ color: var(--muted); }
+  .lead-metric{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--blue);
+    white-space: nowrap;
+    text-align: right;
+  }
+  @media (max-width: 640px){
+    .lead-row{ grid-template-columns: 1fr; gap: 4px; }
+    .lead-metric{ text-align: left; }
+  }
+
+
+  /* ---------- Hobbies ----------
+  .hobby-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hobby{
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 14px 18px;
+    min-width: 160px;
+    flex: 1 1 200px;
+  }
+  .hobby .k{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .hobby p{ color: var(--muted); font-size: 14px; } */
+
+  /* ---------- Spectroscopy ---------- */
+  .spec-intro{
+    max-width: 62ch;
+    color: var(--ink);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .spec-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .spec-item{
+    border: 1px solid var(--line);
+    background: var(--panel);
+  }
+  .spec-item img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--line);
+    background: #EFEFEC;
+  }
+  .spec-item .cap{
+    padding: 14px 16px;
+  }
+  .spec-item .cap .k{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .spec-item .cap p{
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .spec-placeholder{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EFEFEC;
+    border-bottom: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    padding: 12px;
+  }
+  @media (max-width: 640px){
+    .spec-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contact-list a{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-flex;
+    gap: 10px;
+  }
+  .contact-list a .k{ color: var(--muted); min-width: 90px; }
+  .contact-list a:hover .v{ border-bottom: 1px solid var(--ink); }
+
+  footer{
+    padding: 32px 0 48px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 640px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .solar-system{ max-width: 160px; justify-self: start; margin-top: 8px; }
+    .now-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">Mahesh Kumar S</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#now">Now</a>
+      <a href="#leadership">Leadership</a>
+      <!-- <a href="#hobbies">Hobbies</a> -->
+      <a href="#spectroscopy">Spectroscopy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top: none;">
+    <div class="hero-inner">
+      <div>
+        <h1 class="name">Mahesh Kumar<br>Saravanan</h1>
+        <div class="tagline">Aerospace Engineer — Astrodynamics | Numerical Analysis</div>
+        <p class="hero-copy">
+          <!-- EDIT ME: one or two sentences on what you actually work on —
+               e.g. orbital mechanics, mission design, trajectory optimization -->
+          I study how objects move through space and design the trajectories
+          that get them where they need to go and perform numerical simulations to analyse fluid flows and structural components. 
+          This is a running record of the projects, models, and problems I've worked through.
+        </p>
+      </div>
+      <div class="solar-system" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="orbit-ring orbit-1">
+          <div class="spin"><div class="planet"></div></div>
+        </div>
+        <div class="orbit-ring orbit-2">
+          <div class="spin"><div class="planet"></div></div>
+        </div>
+        <div class="orbit-ring orbit-3">
+          <div class="spin"><div class="planet"></div></div>
+        </div>
+        <div class="orbit-ring orbit-4">
+          <div class="spin"><div class="planet"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+      <!-- <span class="section-note">Aerospace · Astrodynamics</span> -->
+    </div>
+    <!-- EDIT ME: 3-4 sentences. Mention your degree/program, university, year,
+         what draws you to astrodynamics, and any tools/languages you're strong in. -->
+    <p>
+      I'm a Bachelor's student in Aerospace Engineering at IIT Madras, 
+      focused on astrodynamics, and numerical analysis. My work sits
+      at the intersection of orbital mechanics, numerical methods to perform analysis of structures and fluids
+    </p>
+    <p>
+      Most of the projects below come out of coursework and topics I've
+      studied, extended into simulations and small tools I build on my own
+      to test the ideas further — that mix of formal learning and self-driven
+      tinkering is how I like to work.
+    </p>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2 class="section-title">Projects</h2>
+      <span class="section-note">5 selected</span>
+    </div>
+
+    <!-- Repeat this .project block for each project. Delete the HTML comments once filled in. -->
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">From Physics to Orbits</div>
+        <div class="project-links">
+          <a href="https://fromphysicstoorbits.streamlit.app/" target="_blank" rel="noopener">Live App</a>
+          <a href="https://github.com/MahiS715/FromPhysicsToOrbits" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        An interactive orbital mechanics toolkit built in Python and
+        Streamlit, covering the full workflow from raw physics to a flyable
+        orbit: propagating a 2D orbit from initial conditions, visualizing
+        the full 3D orbit from classical orbital elements, and planning
+        maneuvers by applying a velocity change (Δv) to a spacecraft's state
+        vector and seeing the resulting orbit update.
+      </p>
+      <div class="project-result">
+        <strong>Result:</strong> A single working app with three linked
+        tools: 2D propagator, 3D visualizer, and maneuver planner that
+        turns orbital mechanics equations into something you can interact
+        with and see change instantly.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Orbital Mechanics</span>
+        <span class="tag">Astrodynamics</span>
+      </div>
+      <div class="project-sublinks">
+        <a href="https://fromphysicstoorbits.streamlit.app/" target="_blank" rel="noopener">2D Orbit Propagator</a>
+        <span class="sep">/</span>
+        <a href="https://fromphysicstoorbits.streamlit.app/app_3Dov" target="_blank" rel="noopener">3D Orbit Visualizer</a>
+        <span class="sep">/</span>
+        <a href="https://fromphysicstoorbits.streamlit.app/app_om" target="_blank" rel="noopener">Maneuver Toolkit</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Wing Aerodynamic Modeling with Aileron Deflection</div>
+        <div class="project-links">
+          <!-- <a href="#" target="_blank" rel="noopener">EDIT: add GitHub repo link if you have oneCode</a> -->
+          <a href="https://drive.google.com/file/d/1qvCHXIltBdI1DrARGJciaJec9o0_iSRu/view?usp=drive_link" target="_blank" rel="noopener"><!-- EDIT: link to the report PDF once hosted, e.g. assets/llt-report.pdf -->Report</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Modeled a finite wing's spanwise lift distribution using Prandtl's
+        Lifting Line Theory, including the effect of aileron deflection via
+        Thin Airfoil Theory corrections. Computed total lift and hub moment
+        by integrating the lift distribution with three different numerical
+        schemes: trapezoidal rule, Gauss-Legendre, and Clenshaw-Curtis 
+        quadrature, comparing convergence behavior, then solved
+        inversely for the aileron deflection needed to produce a target hub
+        moment.
+      </p>
+      <div class="project-result">
+        <strong>Result:</strong> Gauss and Clenshaw-Curtis quadrature both
+        converged within 50 nodes, matching the trapezoidal-rule reference to within 0.15% and 0.013% respectively.
+        Using <em>fsolve</em> to invert the model, the required aileron
+        deflection for a 5000 Nm hub moment was solved to a relative error of
+        8×10⁻⁶, and the roll control derivative C<sub>lδ<sub>a</sub></sub> was extracted
+        as 0.0047
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Lifting Line Theory</span>
+        <span class="tag">Numerical Integration</span>
+        <span class="tag">Course Project</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">CPU Temperature Prediction using Reduced Order Modeling</div>
+        <div class="project-links">
+          <!-- <a href="#" target="_blank" rel="noopener">EDIT: add GitHub repo link if you have oneCode</a> -->
+          <a href="https://drive.google.com/file/d/1P9-9BHpucLUCln6YvMovnBdWZqWHHC-C/view?usp=drive_link" target="_blank" rel="noopener"><!-- EDIT: link to the paper PDF once hosted, e.g. assets/rom-paper.pdf -->Report</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Built a data-driven Reduced Order Model (ROM) for real-time CPU
+        thermal prediction. A full-order 2D transient heat conduction model
+        (160×160 grid, Gaussian hotspots for cores/cache/iGPU) generates
+        training snapshots, from which Proper Orthogonal Decomposition (POD)
+        extracts the dominant modes; Operator Inference then learns the
+        reduced-order dynamics from those modes. Compared Linear and
+        Quadratic Operator Inference formulations for this linear system.
+      </p>
+      <div class="project-result">
+        <strong>Result:</strong> The Linear ROM (7 POD modes, capturing
+        &gt;99.99% of system energy) reproduced the full temperature field
+        with a mean relative error of 0.0486%, while cutting simulation time
+        from 156.52s to 0.069s, a <strong>2250× speedup</strong>, enabling
+        near real-time thermal prediction.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Reduced Order Modeling</span>
+        <span class="tag">POD</span>
+        <span class="tag">Operator Inference</span>
+        <span class="tag">Course Project</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Tensile &amp; Creep Testing of Composites</div>
+        <div class="project-links">
+          <a href="https://drive.google.com/file/d/1xUVLUYKU51dHLsRWgCDWiMRYBmopnAKW/view?usp=sharing" target="_blank" rel="noopener">Report</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Team lab project (AS2070) characterizing the mechanical behavior of
+        GFRP laminates through tensile and creep testing. Specimens were
+        water-jet cut and tabbed, then tested on a UTM under displacement
+        control to capture the full stress-strain curve, and separately 
+        cut specimen was loaded on a creep testing setup at constant
+        stress and elevated temperature to view the primary, secondary, and
+        tertiary creep behavior. My role covered dog-bone design and
+        sample preparation, across a team of five.
+      </p>
+      <div class="project-result">
+        <strong>Result:</strong> Made learnings on requirements of ASTM Standards
+        and the requirement of enough gripping area and tabbing for Composite Testing.
+        The creep test confirmed the expected three-stage behavior.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Composites</span>
+        <span class="tag">Mechanical Testing</span>
+        <!-- <span class="tag"></span> -->
+        <span class="tag">Team Project</span>
+        <span class="tag">Course Project</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Electrochemical Etching of Tungsten wires</div>
+        <div class="project-links">
+          <!-- <a href="#" target="_blank" rel="noopener">Images</a> -->
+          <a href="https://drive.google.com/file/d/1XCur-xnPjQ8Gs6mxyUxHkMTu3WiDyoKf/view?usp=drive_link" target="_blank" rel="noopener">Report</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Fabricated sharp tungsten probe tips for Scanning Tunneling 
+        Microscopy via electrochemical etching by building the setup and calibrating 
+        an AC-driven etching circuit (tungsten wire cathode, platinum 
+        electrode, ~2M NaOH electrolyte), then controlling current via a 
+        trim pod as the wire etched at the meniscus until the immersed tip 
+        separated. Verified tip geometry under both a 10× light microscope 
+        and a scanning electron microscope.
+      </p>
+      <div class="project-result">
+        <strong>Result:</strong>  Produced a tip that appeared sharp under light 
+        microscopy, but SEM imaging revealed a kink at the apex, which is not atomically 
+        sharp enough for STM imaging. Concluded the process is repeatable and 
+        that iterating on etch parameters across multiple trials should reach 
+        atomic sharpness.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Instrumentation</span>
+        <span class="tag">Electronics</span>
+        <span class="tag">STM</span>
+      </div>
+    </div>
+
+  </section>
+
+    <section id="now">
+    <div class="section-head">
+      <h2 class="section-title">Now</h2>
+      <span class="section-note">Updated periodically</span>
+    </div>
+    <div class="now-grid">
+      <div class="now-item">
+        <span class="k">Project - Academic</span>
+        <p><!-- EDIT: current project or coursework -->Estimating spacecraft attitude from light curves, a research project under a professor at IIT Madras</p>
+      </div>
+      <div class="now-item">
+        <span class="k">Project - Industry</span>
+        <p><!-- EDIT: topics you're exploring -->Low-thrust optimal trajectory design for satellites equipped with all-electric propulsion, with URSC, ISRO</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="section-head">
+      <h2 class="section-title">Leadership</h2>
+      <span class="section-note">College roles</span>
+    </div>
+    <!-- EDIT ME: one .lead-row per role. Format is role — event/context — metric.
+         Delete a row's metric span if you don't have a number for it. -->
+    <div class="lead-strip">
+      <div class="lead-row">
+        <div class="lead-role">Department Legislator (Academic)</div>
+        <div class="lead-detail">Elected student representative mediating between Aerospace students and faculty on academic matters; led a 25+ member team organizing the department fest, sports tournaments, and an Airforce Station technical visit (May 2025 – Apr 2026)</div>
+        <div class="lead-metric">89% votes · 250+ students</div>
+      </div>
+      <div class="lead-row">
+        <div class="lead-role">Deputy Placement Coordinator</div>
+        <div class="lead-detail">Outreached companies for the campus Placement &amp; Internship drive; mentored students through their preparation and managed the department's LinkedIn and resource repository (May 2024 – Apr 2025)</div>
+        <div class="lead-metric">15+ companies · 20+ students</div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- <section id="hobbies">
+    <div class="section-head">
+      <h2 class="section-title">Hobbies</h2>
+      <span class="section-note">Off the clock</span>
+    <div class="hobby-list">
+      <div class="hobby">
+        <span class="k">Hobby One</span>
+        <p>One line on what you do and why you enjoy it.</p>
+      </div>
+      <div class="hobby">
+        <span class="k">Hobby Two</span>
+        <p>One line on what you do and why you enjoy it.</p>
+      </div>
+      <div class="hobby">
+        <span class="k">Hobby Three</span>
+        <p>One line on what you do and why you enjoy it.</p>
+      </div>
+    </div>
+  </section> -->
+
+  <section id="spectroscopy">
+    <div class="section-head">
+      <h2 class="section-title">Star Spectroscopy</h2>
+      <span class="section-note">Amateur observations</span>
+    </div>
+    <p class="spec-intro">
+      <!-- EDIT ME: 2-3 sentences on your setup and what you're doing —
+           e.g. what telescope/spectrograph you use, what stars you've
+           targeted, what you're measuring (absorption lines, spectral
+           class, redshift, etc.) -->
+      I capture and analyze stellar spectra as a hobby, using 
+      Star Analyser 100 diffraction grating and an 8-inch Newtonian Reflector
+      telescope to identify absorption lines and classify stars by their spectral type.
+    </p>
+
+    <!-- To add a real image: put the file in an "assets" folder next to this
+         index.html, then replace the placeholder div below with:
+         <div class="spec-item">
+           <img src="assets/your-image.jpg" alt="Describe the spectrum">
+           <div class="cap"> ... </div>
+         </div>
+         Duplicate the block for each spectrum/photo you want to show. -->
+
+    <div class="spec-grid">
+      <div class="spec-item">
+        <img src="images/sirius-2d.jpg" alt="Spectrum of Sirius">
+        <div class="cap">
+          <span class="k">Sirius</span>
+          <p>This raw 2D spectrum belongs to an A type star which shows the Hydrogen Balmer transition lines</p>
+        </div>
+      </div>
+      <div class="spec-item">
+        <img src="images/betelgeuse-1d.png" alt="Spectrum of Betelgeuse">
+        <div class="cap">
+          <span class="k">Betelgeuse</span>
+          <p>This analysed 1D spectrum belongs to a M type star which shows the Titanium Oxide transition lines</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <h2 class="section-title">Contact</h2>
+      <span class="section-note">Open to opportunities</span>
+    </div>
+    <div class="contact-list">
+      <a href="mailto:maheshms01kumar07@gmail.com"><span class="k">Email</span><span class="v">maheshms01kumar07@gmail.com</span></a>
+      <a href="https://www.linkedin.com/in/mahesh-kumar-saravanan/" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">linkedin.com/in/mahesh-kumar-saravanan</span></a>
+      <a href="https://github.com/MahiS715" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">github.com/MahiS715</span></a>
+      <a href="https://drive.google.com/file/d/1BUiNOjBdxNspsfAWcDVe785wV9izRwL_/view?usp=drive_link"><span class="k">Resume</span><span class="v">View PDF</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div>&copy; <span id="year"></span> Mahesh Kumar Saravanan</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
